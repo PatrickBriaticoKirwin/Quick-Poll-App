@@ -1,0 +1,11 @@
+<h1>Quick Poll</h1>
+<% @polls.each do |poll| %>
+  <h2><%= poll[:question] %></h2>
+  <%= form_with url: "/polls/vote", method: :post do %>
+    <% poll[:options].each do |option, count| %>
+      <p><%= option %>: <%= count %> votes</p>
+      <%= radio_button_tag :option, option %>
+    <% end %>
+    <%= submit_tag "Vote" %>
+  <% end %>
+<% end %>

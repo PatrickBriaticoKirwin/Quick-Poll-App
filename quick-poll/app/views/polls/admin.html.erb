@@ -1,0 +1,27 @@
+<h1>Admin Panel</h1>
+
+<% if notice %>
+  <p style="color: green;"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p style="color: red;"><%= alert %></p>
+<% end %>
+
+<h2>Current Poll</h2>
+<p><strong>Question:</strong> <%= @poll[:question] %></p>
+<ul>
+  <% @poll[:options].each do |option, _| %>
+    <li><%= option %>: <%= @votes[option] %> votes</li>
+  <% end %>
+</ul>
+
+<h2>Update Poll</h2>
+<%= form_with url: update_poll_path, method: :post do |f| %>
+  <%= f.label :question, "New Question" %>
+  <%= f.text_field :question %>
+  <%= f.label :options, "Options (comma-separated)" %>
+  <%= f.text_field :options %>
+  <%= f.label :password, "Admin Password" %>
+  <%= f.password_field :password %>
+  <%= f.submit "Update Poll" %>
+<% end %>

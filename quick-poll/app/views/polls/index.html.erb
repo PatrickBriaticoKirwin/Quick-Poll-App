@@ -1,0 +1,32 @@
+<% if notice %>
+  <p style="color: green;"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p style="color: red;"><%= alert %></p>
+<% end %>
+
+
+<h1>Quick Poll</h1>
+<% @polls.each do |poll| %>
+  <h2><%= poll[:question] %></h2>
+  <% if @has_voted %>
+    <p>You’ve already voted! Here are the current results:</p>
+    <ul>
+      <% poll[:options].each do |option, count| %>
+        <li><%= option %>: <%= count %> votes</li>
+      <% end %>
+    </ul>
+  <% else %>
+    <%= form_with url: polls_vote_path, method: :post do %>
+      <ul>
+        <% poll[:options].each do |option, count| %>
+          <li>
+            <%= radio_button_tag "option", option %>
+            <%= label_tag "option_#{option}", "#{option}: #{count} votes" %>
+          </li>
+        <% end %>
+      </ul>
+      <%= submit_tag "Vote" %>
+    <% end %>
+  <% end %>
+<% end %>
