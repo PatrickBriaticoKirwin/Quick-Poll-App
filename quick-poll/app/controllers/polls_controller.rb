@@ -44,6 +44,7 @@ class PollsController < ApplicationController
       new_votes = new_options.each_with_object({}) { |opt, h| h[opt] = @@votes[opt] || 0 }
       @@poll = { id: 1, question: new_question, options: new_votes }
       @@votes = new_votes
+      cookies.delete(:voted) # Reset the voted cookie
       redirect_to admin_path, notice: "Poll updated!"
     else
       redirect_to admin_path, alert: "Need a question and at least 2 options!"
