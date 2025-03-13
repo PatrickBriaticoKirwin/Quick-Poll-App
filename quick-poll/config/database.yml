@@ -1,0 +1,14 @@
+# config/database.yml
+
+default: &default
+  adapter: null
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+
