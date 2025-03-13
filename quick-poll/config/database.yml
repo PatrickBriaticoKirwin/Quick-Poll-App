@@ -15,3 +15,9 @@ test:
 production:
   <<: *default
 
+queue:
+  <<: *default
+cache:
+  adapter: sqlite3
+  database: ":memory:"
+

@@ -11,6 +11,10 @@ Rails.application.configure do
   config.assets.compile = true  # For Tailwind CSS
   config.public_file_server.enabled = true
 
+  # Use memory store instead of database cache
+  config.cache_store = :memory_store
+
+
   # Full error reports are disabled.
   config.consider_all_requests_local = false
 
